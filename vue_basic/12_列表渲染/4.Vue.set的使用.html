@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Vue监测数据改变的原理</title>
+		<!-- 引入Vue -->
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备好一个容器-->
+		<div id="root">
+			<h1>学生信息</h1>
+			<button @click="addSex">添加一个性别属性，默认值是男</button>
+			<h2>姓名：{{student.name}}</h2>
+			<h2 v-if="student.sex">性别：{{student.sex}}</h2>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+
+		const vm = new Vue({
+			el:'#root',
+			data:{
+				student:{
+					name:'tom'
+				}
+			},
+			methods: {
+				addSex(){
+					this.student.sex = '男'
+					// this.$set(this.student,'sex','男')
+				}
+			}
+		})
+	</script>
+</html>
